@@ -1,0 +1,131 @@
+<div>
+  <div class="md:mt-[143px] mt-4">
+    <h1
+      class="text-center font-inknut font-bold md:text-[60px] md:leading-[154.74px] dark:text-white text-textSecondary"
+    >
+      <span class="text-[#FF7A00]">Game </span>Cards
+    </h1>
+    <button
+      id="cardDropdownButton"
+      class="md:w-[300px] md:h-[43px] border-[1px] border-[#FF7A00] dark:text-white text-textSecondary text-left md:pl-3 pl-4 md:ml-32 ml-28 md:mb-[31px] mb-8 md:mt-[51px] mt-6"
+    >
+      <span id="cardSelectedOption">4 products in a page</span
+      ><i class="fa-solid fa-chevron-down pt-0.5 pr-1 pl-6"></i>
+    </button>
+    <ul
+      id="cardDropdownMenu"
+      class="absolute w-full left-0 text-center hidden md:w-1/4 dark:bg-primary bg-lightTopMenu z-50 rounded-lg shadow-lg"
+    >
+      <li
+        class="md:px-4 md:py-2 dark:text-secondary text-textPrimary cursor-pointer hover:bg-gray-600"
+        data-value="4"
+      >
+        4 products in a page
+      </li>
+      <li
+        class="md:px-4 md:py-2 dark:text-secondary text-textPrimary cursor-pointer hover:bg-gray-600"
+        data-value="6"
+      >
+        6 products in a page
+      </li>
+      <li
+        class="md:px-4 md:py-2 dark:text-secondary text-textPrimary cursor-pointer hover:bg-gray-600"
+        data-value="8"
+      >
+        8 products in a page
+      </li>
+      <li
+        class="md:px-4 md:py-2 dark:text-secondary text-textPrimary cursor-pointer hover:bg-gray-600"
+        data-value="10"
+      >
+        10 products in a page
+      </li>
+    </ul>
+
+    <div
+      id="productGrid"
+      class="grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2 md:pl-32 pl-8"
+    >
+      <!-- Product Cards -->
+      <template id="productTemplate">
+        <div
+          class="card md:w-[332.71px] w-36 md:h-[417px] h-44 bg-[#740095] rounded-[20px] text-textPrimary font-inter"
+        >
+          <img
+            class="md:pt-[10px] md:pl-[10px] md:w-[323.76px] md:h-[269.26px] h-28 rounded-[20px]"
+            src="../public/images/landingPage/products1.png"
+          />
+          <h3 class="md:pl-[36px] pl-2 md:pt-5 pt-3 md:text-[20px] text-[12px]">
+            PUBG (1500 + 600UC)
+          </h3>
+          <div class="md:mt-6 md:ml-[36px] ml-2 flex md:space-x-32 space-x-6">
+            <h4 class="md:text-[20px] text-[12px]">৳2200</h4>
+            <button
+              class="md:w-[103.18px] w-12 md:h-[34.55px] h-4 rounded-[20px] bg-[#CD06FFCC] font-bold md:text-[12px] text-[6px] md:leading-[14.52px]"
+            >
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <script>
+    // Mock data for products
+    const products = Array.from({ length: 20 }, (_, index) => ({
+      id: index + 1,
+      title: `PUBG (1500 + ${index * 100}UC)`,
+      price: `৳${2000 + index * 100}`,
+      image: "../public/images/landingPage/products1.png",
+    }));
+
+    // DOM elements
+    const cardDropdownButton = document.getElementById("cardDropdownButton");
+    const cardDropdownMenu = document.getElementById("cardDropdownMenu");
+    const cardSelectedOption = document.getElementById("cardSelectedOption");
+    const cardDropdownItems = cardDropdownMenu.querySelectorAll("li");
+    const productGrid = document.getElementById("productGrid");
+    const productTemplate = document.getElementById("productTemplate");
+
+    // Utility function to render products
+    const renderProducts = (count) => {
+      productGrid.innerHTML = ""; // Clear previous content
+      const visibleProducts = products.slice(0, count); // Get the selected number of products
+      visibleProducts.forEach((product) => {
+        const productCard = productTemplate.content.cloneNode(true);
+        productCard.querySelector("img").src = product.image;
+        productCard.querySelector("h3").textContent = product.title;
+        productCard.querySelector("h4").textContent = product.price;
+        productGrid.appendChild(productCard);
+      });
+    };
+
+    // Initial render (default 4 products)
+    renderProducts(4);
+
+    // Dropdown toggle and selection
+    cardDropdownButton.addEventListener("click", () => {
+      cardDropdownMenu.classList.toggle("hidden");
+    });
+
+    cardDropdownItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const selectedValue = parseInt(item.dataset.value, 10);
+        cardSelectedOption.textContent = `${selectedValue} products in a page`;
+        renderProducts(selectedValue); // Update products based on selection
+        cardDropdownMenu.classList.add("hidden");
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+      if (
+        !cardDropdownButton.contains(event.target) &&
+        !cardDropdownMenu.contains(event.target)
+      ) {
+        cardDropdownMenu.classList.add("hidden");
+      }
+    });
+  </script>
+</div>
