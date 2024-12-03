@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/fontAwesome/all.min.css">
+    <link rel="stylesheet" href="../public/css/swiper/swiper-bundle.css">
+    <title>BB Gaming</title>
+</head>
+<body>
+<div class="dark:bg-primary bg-white font-inter text-textPrimary">
+    <!--      Top Menu Section-->
+    <div>
+
+        <div class="dark:bg-darkTopMenu bg-lightTopMenu md:h-[46px] h-9 md:ml-0 lg:-ml-72 pl-16 flex ">
+            <div class="grid  md:ml-[1624px] ">
+                <!-- Dropdown container -->
+                <div class="relative inline-block w-64 md:mt-2.5 sm:mt-1 mt-1">
+                    <button id="LangDropdownButton" class="md:w-32 sm:w-72 md:-ml-3 md:h-7 bg-transparent border border-secondary text-white  pl-2  rounded-lg focus:outline-none flex items-center justify-between">
+                        <span class="flex" id="LangSelectedOption"><img src="../public/images/topMenu/UK.png" class="h-[15px] w-[20px] md:text-[16px] text-[1px] mt-1.5 mr-1.5"> English</span>
+                        <i class="fa-solid fa-angle-down pl-2 pr-1"></i>
+                    </button>
+
+
+                    <!-- Dropdown menu -->
+                    <ul id="LangDropdownMenu" class="absolute w-full left-0 z-50 hidden  mt-1 dark:bg-primary bg-lightTopMenu  border border-gray-300 rounded-lg shadow-lg">
+                        <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer  flex" data-value="option1"><img src="../public/images/topMenu/UK.png" class="h-[15px] w-[20px] mr-6 mt-0.5"> Option 1</li>
+                        <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer  flex" data-value="option2"><img src="../public/images/topMenu/UK.png" class="h-[15px] w-[20px] mr-6 mt-0.5">Option 2</li>
+                        <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer  flex" data-value="option3"><img src="../public/images/topMenu/UK.png" class="h-[15px] w-[20px] mr-6 mt-0.5">Option 3</li>
+                        <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer  flex" data-value="option4"><img src="../public/images/topMenu/UK.png" class="h-[15px] w-[20px] mr-6 mt-0.5">Option 4</li>
+                    </ul>
+                </div>
+                <script>
+                    // Get the elements
+                    const LangDropdownButton = document.getElementById("LangDropdownButton");
+                    const LangDropdownMenu = document.getElementById("LangDropdownMenu");
+                    const LangSelectedOption = document.getElementById("LangSelectedOption");
+                    const LangDropdownItems = LangDropdownMenu.querySelectorAll("li");
+
+                    // Toggle dropdown visibility on button click
+                    LangDropdownButton.addEventListener("click", () => {
+                        LangDropdownMenu.classList.toggle("hidden");
+                    });
+
+                    // Update selected option and close the dropdown when an option is clicked
+                    LangDropdownItems.forEach(item => {
+                        item.addEventListener("click", () => {
+                            LangSelectedOption.textContent = item.textContent;
+                            LangDropdownMenu.classList.add("hidden");
+                        });
+                    });
+
+                    // Close the dropdown if clicked outside
+                    document.addEventListener("click", (event) => {
+                        if (!LangDropdownButton.contains(event.target) && !LangDropdownMenu.contains(event.target)) {
+                            LangDropdownMenu.classList.add("hidden");
+                        }
+                    });
+                </script>
+
+
+
+            </div>
+            <div class="pt-2">
+
+            </div>
+            <!--Currency Dropdown container -->
+            <div class="relative inline-block w-64 mt-2.5 ">
+                <button id="dropdownButton" class="md:h-7 h-6 w-16 md:w-24 rounded-[20px] ml-[-125px]  md:mt-0 -mt-1 p-2 bg-transparent border border-secondary text-textPrimary focus:outline-none flex items-center justify-between">
+                    <span id="selectedOption">USD</span>
+                    <i class="fa-solid fa-angle-down md:pl-2"></i>
+                </button>
+
+                <!-- Dropdown menu -->
+                <ul id="dropdownMenu" class="absolute left-0 hidden  ml-[-120px] mt-2 w-20 dark:bg-primary bg-lightTopMenu rounded-lg shadow-lg">
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer " data-value="option1">BDT</li>
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer " data-value="option2">INR</li>
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer " data-value="option3">GBP</li>
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer " data-value="option4">EUR</li>
+                </ul>
+            </div>
+            <script>
+
+                // Get the elements
+                const dropdownButton = document.getElementById("dropdownButton");
+                const dropdownMenu = document.getElementById("dropdownMenu");
+                const selectedOption = document.getElementById("selectedOption");
+                const dropdownItems = dropdownMenu.querySelectorAll("li");
+
+                // Toggle dropdown visibility on button click
+                dropdownButton.addEventListener("click", () => {
+                    dropdownMenu.classList.toggle("hidden");
+                });
+
+                // Update selected option and close the dropdown when an option is clicked
+                dropdownItems.forEach(item => {
+                    item.addEventListener("click", () => {
+                        selectedOption.textContent = item.textContent;
+                        dropdownMenu.classList.add("hidden");
+                    });
+                });
+
+                // Close the dropdown if clicked outside
+                document.addEventListener("click", (event) => {
+                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.classList.add("hidden");
+                    }
+                });
+            </script>
+
+            <!--Dark Mode Button-->
+            <label  class="relative inline-flex cursor-pointer items-center pt-1  ">
+                <input id="switch-3" type="checkbox" class="peer sr-only mt-32 " />
+                <label for="switch-3" class="hidden  "></label>
+                <div onclick="toggleDarkMode()" class="peer  h-6 w-16  -ml-32   md:w-16 rounded-[100px] border bg-primary border-secondary after:absolute after:top-4 after:left-0 after:right-full after:h-4 after:w-4 after:rounded-full  after:bg-secondary after:ml-[-122px] md:after:mt-[1.25px] after:-mt-1 after:transition-all after:content-[''] peer-checked:bg-white peer-checked:after:translate-x-9 "></div>
+            </label>
+
+
+        </div>
+        <script>
+
+            function toggleDarkMode(){
+                let isDark=document.body.classList.toggle('dark');
+                localStorage.setItem('darkMode',isDark? 'enabled':'disabled')
+            }
+            document.addEventListener('DOMContentLoaded',(event)=>{
+                if (localStorage.getItem('darkMode')==='enabled'){
+                    document.body.classList.add('dark');
+                }
+            })
+
+        </script>
+
+    </div>
+    <!--Search Box-->
+    <div class="h-[149px] dark:bg-[#4C3558] bg-lightSearchBox flex">
+    <div class=" md:ml-[217px] md:h-[156px] h-20 w-24 rounded md:w-[159px]">
+        <img src='../public/images/searchBox/binaryBhaiLogo.png' class="md:pt-0 pt-4">
+    </div>
+    <div class="wrapper md:w-[604px] w-80 h-10 md:h-[60px] border-[1px] border-[#F5931E] md:mt-[50px] md:ml-[257px] -ml-6 dark:bg-transparent bg-white mt-24">
+        <div class="searchBox flex ">
+            <div class="searchField  ">
+                <input class=" text-textSecondary dark:text-textPrimary  leading-5 md:h-[40px] md:w-[400px] w-44  pl-3 md:text-[16px] text-[14px] dark:bg-transparent  outline-none mt-2.5" type="text"
+                       placeholder="Search For Products">
+            </div>
+
+
+            <!--                DropDown-->
+
+            <div class="relative inline-block w-64 mt-2.5 ">
+                <button id="catDropdownButton" class="absolute md:w-full rounded-[20px] bg-transparent md:ml-0 ml-3.5  text-textPrimary md:py-2 md:px-4 focus:outline-none flex items-center justify-between">
+                    <span class="md:text-[16px] dark:text-textPrimary text-textSecondary text-[12px] leading-5" id="catSelectedOption">All Category</span>
+                    <i class="fa-solid fa-angle-down md:text-[16px] text-[09px] dark:text-textPrimary text-textSecondary pl-2"></i>
+                </button>
+
+                <!-- Dropdown menu -->
+                <ul id="catDropdownMenu" class="absolute left-0 hidden w-full text-center md:text-[16px]  text-[12px] md:mt-12 mt-8 dark:bg-primary bg-lightTopMenu z-50 rounded-lg shadow-lg">
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer hover:bg-gray-600" data-value="option1">Game Cards</li>
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer hover:bg-gray-600" data-value="option2">App Cards</li>
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer hover:bg-gray-600" data-value="option3">Shopping Cards</li>
+                    <li class="px-4 py-2 dark:text-secondary text-textPrimary hover:bg-gray-500 cursor-pointer hover:bg-gray-600" data-value="option4">Items</li>
+                </ul>
+            </div>
+            <script>
+
+                // Get the elements
+                const catDropdownButton = document.getElementById("catDropdownButton");
+                const catDropdownMenu = document.getElementById("catDropdownMenu");
+                const catSelectedOption = document.getElementById("catSelectedOption");
+                const catDropdownItems = catDropdownMenu.querySelectorAll("li");
+
+                // Toggle dropdown visibility on button click
+                catDropdownButton.addEventListener("click", () => {
+                    catDropdownMenu.classList.toggle("hidden");
+                });
+
+                // Update selected option and close the dropdown when an option is clicked
+                catDropdownItems.forEach(item => {
+                    item.addEventListener("click", () => {
+                        catSelectedOption.textContent = item.textContent;
+                        catDropdownMenu.classList.add("hidden");
+                    });
+                });
+
+                // Close the dropdown if clicked outside
+                document.addEventListener("click", (event) => {
+                    if (!catDropdownButton.contains(event.target) && !catDropdownMenu.contains(event.target)) {
+                        catDropdownMenu.classList.add("hidden");
+                    }
+                });
+            </script>
+
+            <i class="fa fa-search text-[#F5931E] pr-1 md:pt-[22px] pt-3.5 cursor-pointer"></i>
+
+        </div>
+
+    </div>
+
+
+    <div class="dark:text-textPrimary text-textSecondary flex md:ml-6 -ml-[260px] md:mt-12 mt-8">
+        <img src="../public/images/searchBox/userSign.png" class="h-[35px] w-[35px] mt-1 mr-1.5">
+        <div>
+            <h1 class="md:text-[15px] text-[13px]">Hello Guest</h1>
+            <div class="md:text-[15px] text-[13px] flex"><a class="hover:text-secondary" href="http://localhost:5173/pages/login.html">Login</a> &nbsp;&nbsp; <a class="hover:text-secondary" href="http://localhost:5173/pages/register.html">Register</a></div>
+        </div>
+
+    </div>
+
+
+
+    <div class="md:pl-64 ml-20 md:mt-[40px] mt-6 flex justify-between md:space-x-5">
+        <div>
+            <div class="h-[18px] w-[18px] bg-[#CD06FFCC]  rounded-full text-center text-[14px] text-textPrimary ml-2 relative ">
+                <img class="absolute ml-[-10px] mt-3" src="../public/images/searchBox/link.png">7
+            </div>
+
+        </div>
+        <div>
+            <div class="h-[18px] w-[18px] bg-[#CD06FFCC] rounded-full text-center text-[14px] text-textPrimary ml-2 relative ">
+                <img class="absolute ml-[-10px] mt-3" src="../public/images/searchBox/like.png">17
+            </div>
+
+        </div>
+        <div>
+            <div class="h-[18px] w-[18px] bg-[#CD06FFCC] rounded-full text-center text-[14px] text-textPrimary ml-2 relative ">
+                <img class="absolute ml-[-10px] mt-3" src="../public/images/searchBox/cart.png">7
+            </div>
+
+        </div>
+    </div>
+
+</div>
+    <!--Navbar Section -->
+    <div class="navbar  h-[50.5px]  mt-[15px] pl-[250px] ">
+        <div class="md:pt-3.5 md:ml-0 -ml-60 flex  space-x-56 dark:text-white text-textSecondary font-inter">
+            <div>
+                <button id="prodDropdownButton" class="font-inter md:text-[16px] text-[13px]  dark:bg-darkAllCategoriesBg bg-lightAllCategoriesBg md:w-[194px] w-28 h-7 md:h-[33px] p-1   rounded-[10px]">
+                    <span class=""  id="prodSelectedOption">All Category</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <ul id="prodDropdownMenu" class="absolute left-0  text-center  hidden md:ml-64 md:w-44 md:text-center mt-2 dark:bg-primary bg-lightTopMenu z-50 rounded-lg shadow-lg">
+                    <li class="px-4 py-2    ml-4 w-28 md:text-[16px] text-[11px] dark:text-secondary text-textPrimary  cursor-pointer " data-value="option1">Game Cards</li>
+                    <li class="px-4 py-2    ml-4 w-28 md:text-[16px] text-[11px] dark:text-secondary text-textPrimary  cursor-pointer " data-value="option2">App Cards</li>
+                    <li class="px-4 py-2    ml-4 w-28 md:text-[16px] text-[11px] dark:text-secondary text-textPrimary  cursor-pointer " data-value="option3">Shopping Cards</li>
+                    <li class="px-4 py-2     ml-4 w-28 md:text-[16px] text-[11px] dark:text-secondary text-textPrimary  cursor-pointer " data-value="option4">Items</li>
+                </ul>
+            </div>
+
+
+
+            <div class="">
+                <nav>
+                    <div>
+                        <ul class="absolute hidden md:flex justify-between space-x-[30px] cursor-pointer">
+                            <li><a href="#home" class="hover:text-secondary">Home</a></li>
+                            <li><a href="#about" class="hover:text-secondary">About</a></li>
+                            <li><a href="#services" class="hover:text-secondary">Services</a></li>
+                            <li><a href="#contact" class="hover:text-secondary">Contact</a></li>
+                            <li><a href="#vendor" class="hover:text-secondary">Vendor</a></li>
+                            <li><a href="#seller" class="hover:text-secondary">Become a Seller</a></li>
+                        </ul>
+                        <div class="md:hidden flex items-center">
+                            <button id="menu-button" class="text-white focus:outline-none">
+                                <i class="fa-solid fa-bars text-3xl text-textSecondary dark:text-textPrimary"></i>
+                            </button>
+                        </div>
+                        <div id="mobile-menu" class="hidden md:hidden absolute">
+                            <ul class="flex flex-col space-y-4 z-10 text-center mt-4 -ml-24 dark:bg-primary bg-lightTopMenu dark:text-secondary text-textPrimary p-4 mr-3 rounded-[10px]">
+                                <li><a href="#home" onclick="closeMenu()" class="hover:text-gray-400 mobile-button">Home</a></li>
+                                <li><a href="#about" onclick="closeMenu()" class="hover:text-gray-400 mobile-button">About</a></li>
+                                <li><a href="#services" onclick="closeMenu()" class="hover:text-gray-400 mobile-button">Services</a></li>
+                                <li><a href="#contact" onclick="closeMenu()" class="hover:text-gray-400 mobile-button ">Contact</a></li>
+                                <li><a href="#vendor" onclick="closeMenu()" class="hover:text-gray-400 mobile-button">Vendor</a></li>
+                                <li><a href="#seller" onclick="closeMenu()" class="hover:text-gray-400 mobile-button">Become a Seller</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex  md:ml-[684px] -ml-48 md:mt-0 -mt-8">
+                    <div class="">
+                        <img class="" src="../public/images/navbar/phone%20(2).png">
+                    </div>
+                    <div class="">
+                        <h4 class="text-[12px] leading-[14.52px]">Hotline<br>
+                            <span class="font-bold">+8801866652125</span></h4>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+
+                // Get the elements
+                const prodDropdownButton = document.getElementById("prodDropdownButton");
+                const prodDropdownMenu = document.getElementById("prodDropdownMenu");
+                const prodSelectedOption = document.getElementById("prodSelectedOption");
+                const prodDropdownItems = prodDropdownMenu.querySelectorAll("li");
+
+                // Toggle dropdown visibility on button click
+                prodDropdownButton.addEventListener("click", () => {
+                    prodDropdownMenu.classList.toggle("hidden");
+                });
+
+                // Update selected option and close the dropdown when an option is clicked
+                prodDropdownItems.forEach(item => {
+                    item.addEventListener("click", () => {
+                        prodSelectedOption.textContent = item.textContent;
+                        prodDropdownMenu.classList.add("hidden");
+                    });
+                });
+
+                // Close the dropdown if clicked outside
+                document.addEventListener("click", (event) => {
+                    if (!prodDropdownButton.contains(event.target) && !prodDropdownMenu.contains(event.target)) {
+                        prodDropdownMenu.classList.add("hidden");
+                    }
+                });
+            </script>
+            <script>
+                const menuButton = document.getElementById('menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                menuButton.addEventListener('click', () => {
+                    if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
+                        mobileMenu.style.display = "block";
+                    } else {
+                        mobileMenu.style.display = "none";
+                    }
+                });
+
+                // Function to close the mobile menu when a link is clicked
+                function closeMenu() {
+                    mobileMenu.style.display = "none";
+                }
+
+            </script>
+
+
+        </div>
+
+
+    </div>
+
+    <!--Product Details-->
+    <div class="product-details md:mt-[100px] mt-4 md:ml-[250px] ml-4 flex">
+        <div class="product-photos">
+            <img class="md:w-[552px] w-44 h-44  md:h-[371px] rounded-[30px]" src="../public/images/products/product-details1.png">
+            <div class="md:mt-[24px] md:w-full w-44 mt-4 flex md:space-x-[45px] space-x-6">
+                <button class=""><img class="md:w-[81px]  w-10 h-10 md:h-[89px] w- rounded-[20px]"
+                                      src="../public/images/products/product-details1.png"></button>
+                <button class=""><img class="md:w-[81px] w-10 h-10 md:h-[89px]  rounded-[20px]"
+                                      src="../public/images/products/product-details2.png"></button>
+                <button class=""><img class="md:w-[81px] w-10 h-10 md:h-[89px]  rounded-[20px]"
+                                      src="../public/images/products/product-details3.png"></button>
+            </div>
+
+        </div>
+
+
+        <div class="product-info md:pl-[280px] pl-4">
+            <h1 class="text-[#0AFEC3] font-bold md:leading-[42.36px] md:text-[45px]">PUBG (1500 + 600UC)</h1>
+
+            <h1 class="dark:text-textPrimary text-textSecondary font-bold md:leading-[30.26px] md:text-[35px] pt-6">৳ 2200 <span
+                    class="md:text-[25px] md:pl-8 pl-4 text-[#0c9171] font-semibold md:leading-[21.78px]">Available</span></h1>
+
+            <h1 class="dark:text-textPrimary text-textSecondary md:text-[25px] font-bold md:leading-[21.78px] md:pt-12 pt-3">Quantity</h1>
+
+            <div class="flex md:space-x-6 space-x-3 md:mt-5 mt-3">
+
+                <div class="dark:bg-buyNowBtn bg-lightTopMenu md:w-[119px] h-7 w-12 md:h-[40px]  flex justify-between items-center">
+                    <button class="font-bold text-[#0AFEC3] md:text-[24px] pl-1 hover:text-secondary  ">+</button>
+                    <p class="text-[16px] text-textPrimary ">1</p>
+                    <button class="font-bold text-[#0AFEC3] md:text-[24px]   pr-1 hover:text-secondary ">-</button>
+
+                </div>
+                <button class="dark:bg-buyNowBtn bg-lightTopMenu md:w-[429px] w-28 md:h-[40px] h-7  text-textPrimary md:text-[20px] dark:hover:bg-secondary hover:bg-secondary ">
+                    Add to cart
+
+                </button>
+
+
+            </div>
+
+            <button class="dark:bg-buyNowBtn bg-lightTopMenu md:w-[572px] md:h-[40px] md:mt-[50px] mt-4 w-44 h-7 text-textPrimary font-semibold md:text-[20px] dark:hover:bg-secondary hover:bg-secondary">
+                Buy Now
+            </button>
+
+            <div class="flex md:justify-between dark:text-textPrimary text-textSecondary space-x-1 mt-4">
+                <button class=" md:text-[16px] text-[8px] hover:text-[#F5931E]">
+                    <i class="fa-solid fa-repeat"></i> Compare
+                </button>
+                <button class=" md:text-[16px] text-[8px] hover:text-[#F5931E]">
+                    <i class="fa-regular fa-heart"></i> Wishhlist
+                </button>
+                <h4 class=" md:text-[16px] text-[8px]">Category : PUBG UC</h4>
+            </div>
+
+
+            <div class="md:mt-16 mt-4 flex md:space-x-6 space-x-1 items-center text-textPrimary ">
+                <h3 class=" font-semibold md:text-[20px] md:leading-[16.94px] ">Share :</h3>
+                <button class=" dark:bg-buyNowBtn bg-lightTopMenu md:w-[40px] md:h-[40px] h-5 w-5 text-[10px] md:text-2xl border rounded-full hover:text-secondary hover:border-secondary">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </button>
+                <button class=" dark:bg-buyNowBtn bg-lightTopMenu md:w-[40px] md:h-[40px] h-5 w-5 text-[10px] md:text-2xl border rounded-full hover:text-secondary hover:border-secondary">
+                    <i class="fa-brands fa-facebook-messenger"></i>
+                </button>
+                <button class=" dark:bg-buyNowBtn bg-lightTopMenu md:w-[40px] md:h-[40px] h-5 w-5 text-[10px] md:text-2xl border rounded-full hover:text-secondary hover:border-secondary">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </button>
+                <button class=" dark:bg-buyNowBtn bg-lightTopMenu md:w-[40px] md:h-[40px] h-5 w-5 text-[10px] md:text-2xl border rounded-full hover:text-secondary hover:border-secondary">
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
+                <button class=" dark:bg-buyNowBtn bg-lightTopMenu md:w-[40px] md:h-[40px] h-5 w-5 text-[10px] md:text-2xl border rounded-full hover:text-secondary hover:border-secondary">
+                    <i class="fa-solid fa-link"></i>
+                </button>
+
+
+            </div>
+
+            <div class="md:w-[470px] w-44 md:h-[50px] h-8 dark:bg-buyNowBtn bg-lightTopMenu md:mt-10 mt-4 content-center">
+                <h3 class="text-textPrimary  md:text-[16px] text-[10px] text-center">Display extra information for product details page.</h3>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--Reviews And Description-->
+    <div>
+        <div class="flex justify-center gap-x-6 md:mt-[90px] mt-8">
+            <button id="descriptionBtn" class="md:text-[25px] active:text-secondary  font-semibold dark:text-secondary text-secondary">
+                Description
+            </button>
+            <button id="reviewsBtn" class="md:text-[25px] active:text-secondary  font-semibold dark:text-textPrimary text-textSecondary">Reviews(1)
+            </button>
+        </div>
+
+        <div id="description" class="block">
+            <div class="description dark:bg-buyNowBtn bg-lightTopMenu md:ml-[250px] md:mt-16 mt-4 md:w-[1430px] w-full md:h-[200px] h-24 md:mb-32 rounded-[12px] content-center">
+                <p class="text-center text-textPrimary md:text-[25px] text-[10px]">Buy PUBG Mobile UC Top Up in Bangladesh using bKash, Nagad,
+                    Rocket & Upay at
+                    cheapest price. All UC are authorized. Order will be delivered within 5-10 min.</p>
+
+            </div>
+        </div>
+        <div id="reviews" class="hidden md:ml-[250px] ml-4 md:space-y-5 ">
+            <div class=" md:mt-[90px] mt-8 space-y-5 ">
+                <h1 class="text-textPrimary font-bold md:text-[30px] text-[20px]  md:leading-[30.26px]">Add your review</h1>
+                <h2 class="text-textPrimary font-normal md:text-[18px] text-[10px] md:leading-[21.78px]">Your email address will not be published. Required fields are marked * </h2>
+                <h4 class="text-[#FF0505] font-normal md:text-[18px] text-[16px] md:leading-[21.78px]">Please login to write review!</h4>
+                <h2 class="text-[#0AFEC3] font-normal md:text-[20px] md:leading-[21.78px]">Your Rating
+                    <span class="pl-4">
+               <button>
+                   <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+               </button>
+               <button>
+                   <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+               </button>
+               <button>
+                   <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+               </button>
+               <button>
+                   <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+               </button>
+               <button>
+                   <i class="fa-regular fa-star"></i>
+               </button>
+               </span></h2>
+                <h4 class="text-textPrimary font-normal md:text-[18px] md:leading-[21.78px]">Review:</h4>
+                <textarea class="md:w-[1430px] w-[350px] md:h-[200px] h-24 dark:bg-buyNowBtn bg-lightTopMenu md:text-[16px] text-[8px] -mt-4 text-textPrimary outline-none md:pt-4 pt-2 md:pl-4 pl-2 " id="review" name="reviewBox" placeholder="Write your review here..."></textarea>
+
+
+            </div>
+            <button class="md:w-[50.5px] w-12 h-9 md:h-[50px] mt-4 rounded-[10px] bg-secondary pl-1.5">
+                <i class="fa-solid fa-images md:text-3xl  md:-ml-2 -ml-2  "></i>
+
+            </button>
+            <div class="md:w-[400px] w-72 md:h-[35px] h-6 bg-[#9747FF] rounded-[10px] mt-4   text-textPrimary md:text-[12px] text-[8px] md:pt-2 pt-1">
+
+                <i class="fa-solid fa-exclamation bg-red-700 w-[12px] h-[12px] rounded-full mr-1.5 ml-2" style="color: #ffffff;"></i>You can upload upto 4 photos. Each photo maximum size 2 mb
+
+            </div>
+            <button class="w-[150px] mt-4 h-[50px] dark:bg-buyNowBtn bg-lightTopMenu text-textPrimary dark:hover:bg-secondary hover:bg-secondary">
+                Submit
+            </button>
+
+
+        </div>
+
+        <!--    Related Products-->
+        <h1 class="md:mt-[95px] mt-6 text-center font-inknut font-bold md:text-[60px] md:leading-[154.74px] text-textPrimary">
+            Related products</h1>
+        <div class="md:ml-[250px] ml-8 mt-4 grid grid-cols-2 gap-y-3 md:flex md:space-x-3">
+            <div class="card md:w-[332.71px]  w-36 md:h-[417px] h-44 bg-[#740095] rounded-[20px] text-textPrimary font-inter">
+                <img class="md:pt-[10px] md:pl-[10px]  md:w-[323.76px] md:h-[269.26px] h-28 rounded-[20px]"
+                     src="../public/images/landingPage/products1.png">
+                <h3 class=" md:pl-[36px] pl-2 md:pt-5 pt-3 md:text-[20px] text-[12px]">PUBG (1500 + 600UC)</h3>
+                <div class="md:mt-6 md:ml-[36px] ml-2 flex md:space-x-32 space-x-6">
+                    <h4 class="md:text-[20px] text-[12px]">৳2200</h4>
+                    <button class="md:w-[103.18px] w-12 md:h-[34.55px] h-4 rounded-[20px] bg-[#CD06FFCC] font-bold md:text-[12px] text-[6px] md:leading-[14.52px]">
+                        Add to cart
+                    </button>
+                </div>
+
+            </div>
+            <div class="card md:w-[332.71px]  w-36 md:h-[417px] h-44 bg-[#740095] rounded-[20px] text-textPrimary font-inter">
+                <img class="md:pt-[10px] md:pl-[10px]  md:w-[323.76px] md:h-[269.26px] h-28 rounded-[20px]"
+                     src="../public/images/landingPage/products1.png">
+                <h3 class=" md:pl-[36px] pl-2 md:pt-5 pt-3 md:text-[20px] text-[12px]">PUBG (1500 + 600UC)</h3>
+                <div class="md:mt-6 md:ml-[36px] ml-2 flex md:space-x-32 space-x-6">
+                    <h4 class="md:text-[20px] text-[12px]">৳2200</h4>
+                    <button class="md:w-[103.18px] w-12 md:h-[34.55px] h-4 rounded-[20px] bg-[#CD06FFCC] font-bold md:text-[12px] text-[6px] md:leading-[14.52px]">
+                        Add to cart
+                    </button>
+                </div>
+
+            </div>
+            <div class="card md:w-[332.71px]  w-36 md:h-[417px] h-44 bg-[#740095] rounded-[20px] text-textPrimary font-inter">
+                <img class="md:pt-[10px] md:pl-[10px]  md:w-[323.76px] md:h-[269.26px] h-28 rounded-[20px]"
+                     src="../public/images/landingPage/products1.png">
+                <h3 class=" md:pl-[36px] pl-2 md:pt-5 pt-3 md:text-[20px] text-[12px]">PUBG (1500 + 600UC)</h3>
+                <div class="md:mt-6 md:ml-[36px] ml-2 flex md:space-x-32 space-x-6">
+                    <h4 class="md:text-[20px] text-[12px]">৳2200</h4>
+                    <button class="md:w-[103.18px] w-12 md:h-[34.55px] h-4 rounded-[20px] bg-[#CD06FFCC] font-bold md:text-[12px] text-[6px] md:leading-[14.52px]">
+                        Add to cart
+                    </button>
+                </div>
+
+            </div>
+            <div class="card md:w-[332.71px]  w-36 md:h-[417px] h-44 bg-[#740095] rounded-[20px] text-textPrimary font-inter">
+                <img class="md:pt-[10px] md:pl-[10px]  md:w-[323.76px] md:h-[269.26px] h-28 rounded-[20px]"
+                     src="../public/images/landingPage/products1.png">
+                <h3 class=" md:pl-[36px] pl-2 md:pt-5 pt-3 md:text-[20px] text-[12px]">PUBG (1500 + 600UC)</h3>
+                <div class="md:mt-6 md:ml-[36px] ml-2 flex md:space-x-32 space-x-6">
+                    <h4 class="md:text-[20px] text-[12px]">৳2200</h4>
+                    <button class="md:w-[103.18px] w-12 md:h-[34.55px] h-4 rounded-[20px] bg-[#CD06FFCC] font-bold md:text-[12px] text-[6px] md:leading-[14.52px]">
+                        Add to cart
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <!--    Subscription-->
+    <div class="subscription ">
+        <div class="md:h-[229px] h-52 bg-gradient-to-r from-subscriptionGradFrom via-subscriptionGradVia to-subscriptionGradTo mt-[127px] md:mb-[44px] flex">
+            <div CLASS="flex">
+                <div class="md:h-[277px] md:block hidden  md:mt-0 mt-16 ">
+                    <img class="md:ml-[64px] md:pt-[137px] md:block " src="../public/images/subscription/subscriptionElipse1.png">
+                </div>
+                <div class=" ">
+                    <img class="md:ml-[-4px] md:mt-[-15px] md:block hidden md:md:w-[270px] md:md:h-[270px]"
+                         src="../public/images/subscription/subscriptionElipse2.png">
+                </div>
+                <div class="md:block hidden">
+                    <img class="md:md:ml-[16px] md:md:mt-[16px]  " src="../public/images/subscription/subscriptionElipse1.png">
+                </div>
+            </div>
+
+            <div class="md:pt-[82px] md:ml-[-284px] md:mt-0 mt-6  md:block ">
+                <h1 class="text-textPrimary pl-14 md:pl-0 md:text-[30px] text-[16px] md:leading-[36.31px]">Save 20% of all store</h1>
+                <h1 class="text-[#0AFEC3] w-full md:ml-0 ml-14 md:pt-[7px] md:text-[35px] text-[16px] md:leading-[32.36px] font-semibold">Subscribe our
+                    newsletter</h1>
+            </div>
+            <div class="md:w-[561px] md:h-[50px] h-7 w-[280px] bg-white rounded-[10px] border-[1px] border-[#FF7A00] md:ml-[345px] -ml-56 md:mt-[80px] mt-24 flex">
+                <img src="../public/images/login/email.png" class="md:w-[21px] w-4 h-3 md:h-[18.29px] md:ml-[15px] ml-1 md:mt-[15px] mt-1.5">
+                <input type="text" placeholder="Email Address" class="outline-none text-textSecondary md:pl-[15px] pl-2 md:text-[16px] text-[8px]  w-full bg-transparent">
+
+            </div>
+            <button class="md:w-[237px] md:h-[49.5px] h-7 md:text-[16px] text-[8px] p-1 bg-[#FF7A00] rounded-[12px] md:p-[10px] font-bold text-textPrimary md:mt-[137px] mt-24 md:ml-[-240px] ml-2">
+                Subscribe now
+            </button>
+
+            <div class="md:pl-24 flex ">
+                <div class=" mt-[25px] md:block hidden">
+                    <img src="../public/images/subscription/subscriptionElipse4.png">
+                </div>
+                <div class="md:block hidden">
+                    <img src="../public/images/subscription/subscriptionElipse5.png">
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!--    Footer-->
+
+    <div class="footer pb-10 dark:text-textPrimary text-textSecondary  flex">
+        <div class="md:ml-[207px] ml-1">
+            <img class="w-[74.97px] h-[89px]" src="../public/images/searchBox/binaryBhaiLogo.png">
+            <p class="md:w-[227.51px] md:text-[16px] text-[8px]">
+                <span class="font-semibold">Binary Bhai</span> - A platform specialized in communications, information
+                technology, and the resale of electronic cards, operated by Auras Innovation.
+
+            </p>
+            <div class="w-[93.29px] h-[20px] flex justify-between mt-[34px]">
+                <a href=""><img src="../public/images/footer/facebook.png"></a>
+                <a href=""><img src="../public/images/footer/x.png"></a>
+                <a href=""><img src="../public/images/footer/linkedin.png"></a>
+            </div>
+        </div>
+        <div class="md:ml-[174px] ml-2 md:mt-[30px] mt-4">
+            <h3 class="md:text-[25px] leading-[30.26px] md:mb-3.5 ">Information</h3>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1" href="">About Us</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1 " href="">Terms and condition</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1" href="">Privacy Policy</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1" href="">Contact Us</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1" href="">Customer protection policy</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1" href="">Product Categories</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary leading-1" href="">Trademark policy</a>
+        </div>
+        <div class="md:ml-[174px] md:mt-[30px] ml-4 mt-4">
+            <h3 class="md:text-[25px] text-[16px] md:leading-[30.26px] md:mb-3.5 md:block ">My Account</h3>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary" href="">Track Order</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary " href="">Shipping</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary" href="">Wishlist</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary" href="">My account</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary" href="">Order history</a> <br>
+            <a class="md:text-[16px] text-[6px] md:leading-[30.36px] hover:text-secondary" href="">Return</a>
+        </div>
+        <div class="md:ml-[174px] md:mt-[30px] mt-20">
+            <h3 class="md:text-[25px] text-[10px] md:leading-[30.26px] md:mb-3.5">Contact Us</h3>
+            <h3 class="md:text-[25px] text-[10px] md:leading-[30.26px] md:mb-1.5 font-bold">+8801866652125</h3>
+            <h1 class="mt-1.5 md:text-[16px] text-[6px]">binarybhai@gmail.com</h1>
+            <p class="mt-1.5 md:text-[16px] text-[6px]">Uttara sector 9, Road 3,
+                House 33, Dhaka</p>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script type="module" src="/main.js"></script>
+<script type="module" src="../public/js/fontAwesome/all.min.js"></script>
+<script type="module" src="../public/js/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script type="module" src="../public/js/jquery.min.js"></script>
+
+<script type="module" src="../public/js/script.js"></script>
+</body>
+</html>
